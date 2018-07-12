@@ -1,8 +1,12 @@
 plugins {
-  kotlin("jvm")
   `maven-publish`
   id("io.spring.dependency-management") version "1.0.5.RELEASE"
+  java
+}
 
+configurations {
+  group = "io.holunda.testing"
+  version = "0.0.1-SNAPSHOT"
 }
 
 apply {
