@@ -8,8 +8,7 @@ import org.junit.Test
 
 class StandAloneEngineTest {
 
-  @Rule
-  @JvmField
+  @get:Rule
   val camunda = HolundaProcessEngineBuilder().rule()
 
   @Test
@@ -20,8 +19,7 @@ class StandAloneEngineTest {
 
 class PreInitTest {
 
-  @Rule
-  @JvmField
+  @get:Rule
   val camunda = HolundaProcessEngineBuilder()
     .preInit("history=audit") { c -> c.historyLevel = HISTORY_LEVEL_AUDIT }
     .rule()
