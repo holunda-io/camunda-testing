@@ -3,6 +3,7 @@ package io.holunda.testing.core
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Rule
 import org.junit.Test
+import java.util.function.Consumer
 
 class StandAloneEngineTest {
 
@@ -19,7 +20,7 @@ class PreInitTest {
 
   @get:Rule
   val camunda = HolundaProcessEngineBuilder()
-    .preInit("retries=10") { c -> c.defaultNumberOfRetries = 10 }
+    .preInit(name="retries=10", block = Consumer { it.defaultNumberOfRetries = 10 })
     .rule()
 
   @Test

@@ -10,6 +10,7 @@ import org.camunda.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration
 import org.camunda.bpm.engine.impl.history.HistoryLevel
 import org.camunda.bpm.engine.test.ProcessEngineRule
 import org.camunda.bpm.engine.test.mock.MockExpressionManager
+import java.util.function.Consumer
 
 class HolundaProcessEngineBuilder {
 
@@ -28,6 +29,8 @@ class HolundaProcessEngineBuilder {
       setCustomFormEngines(mutableListOf())
       setCustomIncidentHandlers(mutableListOf())
       setCustomJobHandlers(mutableListOf())
+      customPostBPMNParseListeners = mutableListOf()
+      customPreBPMNParseListeners = mutableListOf()
     }
   }
 
@@ -44,13 +47,13 @@ class HolundaProcessEngineBuilder {
 
 fun createPlugin(
   name: String,
-  onPreInit: OnPreInit = {},
-  onPostInit: OnPostInit = {},
-  onPostProcessEngineBuild: OnPostProcessEngineBuild = {}) = object : AbstractProcessEnginePlugin() {
+  onPreInit: OnPreInit = Consumer { },
+  onPostInit: OnPostInit = Consumer { },
+  onPostProcessEngineBuild: OnPostProcessEngineBuild = Consumer { }) = object : AbstractProcessEnginePlugin() {
 
   override fun toString(): String = name
-  override fun preInit(processEngineConfiguration: ProcessEngineConfigurationImpl) = onPreInit(processEngineConfiguration).let { Unit }
-  override fun postInit(processEngineConfiguration: ProcessEngineConfigurationImpl) = onPostInit(processEngineConfiguration).let { Unit }
-  override fun postProcessEngineBuild(processEngine: ProcessEngine) = onPostProcessEngineBuild(processEngine as ProcessEngineImpl).let { Unit }
+  override fun preInit(processEngineConfiguration: ProcessEngineConfigurationImpl) = onPreInit.accept(processEngineConfiguration).let { Unit }
+  override fun postInit(processEngineConfiguration: ProcessEngineConfigurationImpl) = onPostInit.accept(processEngineConfiguration).let { Unit }
+  override fun postProcessEngineBuild(processEngine: ProcessEngine) = onPostProcessEngineBuild.accept(processEngine as ProcessEngineImpl).let { Unit }
 
 }
