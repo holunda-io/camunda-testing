@@ -5,6 +5,6 @@ set -e
 
 ls -lR $HOME/.m2/repository/io/holunda
 
-./gradlew build
-./gradlew publishToMavenLocal
-mvn clean verify -f examples/maven-java-example
+#./gradlew build
+#./gradlew publishToMavenLocal
+#mvn clean verify -f examples/maven-java-example
