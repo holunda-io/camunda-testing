@@ -22,3 +22,7 @@ Wraps the common testing libraries and provides tools/helpers and best practices
 
 * use/learn kotlin
 * use/learn gradle (kts)
+
+## Links
+
+* [creating gradle jvm lib](https://guides.gradle.org/building-kotlin-jvm-libraries/)
