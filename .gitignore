@@ -11,3 +11,7 @@ gradle-app.setting
 
 .idea/
 *.iml
+
+
+# maven
+target/

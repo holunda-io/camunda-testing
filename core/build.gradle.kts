@@ -1,5 +1,6 @@
 plugins {
   kotlin("jvm")
+  `maven-publish`
 }
 
 dependencies {
@@ -15,3 +16,16 @@ dependencies {
 }
 
 
+publishing {
+  (publications) {
+    "mavenJava"(MavenPublication::class) {
+      from(components["java"])
+      artifactId = "camunda-testing-core"
+    }
+  }
+  repositories {
+    maven {
+      url = uri("$buildDir/repository")
+    }
+  }
+}
