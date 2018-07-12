@@ -3,4 +3,4 @@ language: java
 script:
 - ./gradlew build
 - ./gradlew publishToMavenLocal
-- cd examples/maven-java-example && mvn clean install
+- mvn clean install -f examples/maven-java-example
