@@ -1,8 +1,6 @@
 package io.holunda.testing.core
 
 import org.assertj.core.api.Assertions.assertThat
-import org.camunda.bpm.engine.ProcessEngineConfiguration.HISTORY_AUDIT
-import org.camunda.bpm.engine.impl.history.HistoryLevel.HISTORY_LEVEL_AUDIT
 import org.junit.Rule
 import org.junit.Test
 
@@ -21,11 +19,11 @@ class PreInitTest {
 
   @get:Rule
   val camunda = HolundaProcessEngineBuilder()
-    .preInit("history=audit") { c -> c.historyLevel = HISTORY_LEVEL_AUDIT }
+    .preInit("retries=10") { c -> c.defaultNumberOfRetries = 10 }
     .rule()
 
   @Test
-  fun `history level is audit`() {
-    assertThat(camunda.processEngineConfiguration.history).isEqualTo(HISTORY_AUDIT)
+  fun `default retries modified`() {
+    assertThat(camunda.processEngineConfiguration.defaultNumberOfRetries).isEqualTo(10)
   }
 }
