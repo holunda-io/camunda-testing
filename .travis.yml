@@ -4,4 +4,6 @@ cache:
   directories:
   - $HOME/.m2/repository
 
+before_install: ./gradlew -b bom/build.gradle.kts build publishToMavenLocal
+
 script: ./build.sh
