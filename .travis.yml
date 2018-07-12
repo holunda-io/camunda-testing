@@ -2,6 +2,6 @@ language: java
 
 cache:
   directories:
-  - $HOME/.m2
+  - $HOME/.m2/repository
 
 script: ./build.sh
