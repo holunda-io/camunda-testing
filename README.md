@@ -28,3 +28,4 @@ Wraps the common testing libraries and provides tools/helpers and best practices
 ## Links
 
 * [creating gradle jvm lib](https://guides.gradle.org/building-kotlin-jvm-libraries/)
+* [Red6 DMN Testing](https://medium.com/red6-es/fehler-in-dmns-ausmerzen-e0d6b2faba36) - ([github](https://github.com/red6/dmn-check))
